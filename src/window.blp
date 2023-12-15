@@ -1,0 +1,80 @@
+using Gtk 4.0;
+using Adw 1;
+
+template $CobwebWindow : Adw.ApplicationWindow {
+  default-width: 600;
+  default-height: 300;
+
+  width-request: 200;
+  height-request: 100;
+
+  title: "Cobweb";
+
+  Adw.Breakpoint {
+    condition ("max-width: 400sp")
+    setters {
+      split_view.collapsed: true;
+    }
+  }
+
+  content: Adw.NavigationSplitView split_view {
+    sidebar: Adw.NavigationPage {
+      title: "Cobweb";
+      tag: "sidebar";
+
+      child: Adw.ToolbarView {
+        [top]
+        Adw.HeaderBar {
+          [end]
+          MenuButton {
+            primary: true;
+            icon-name: "open-menu-symbolic";
+            tooltip-text: _("Menu");
+            menu-model: primary_menu;
+          }
+        }
+        content: Box {
+          orientation: vertical;
+        };
+      };
+    };
+
+    content: Adw.NavigationPage {
+      title: _("Content");
+      tag: "content";
+
+      child: Adw.ToolbarView {
+        [top]
+        Adw.HeaderBar {
+
+        }
+        content: Label label {
+          label: "Hello, World!";
+
+          styles [
+            "title-1",
+          ]
+        };
+      };
+    };
+  };
+}
+
+menu primary_menu {
+  section {
+    item {
+      label: _("_Preferences");
+      action: "app.preferences";
+    }
+
+    item {
+      label: _("_Keyboard Shortcuts");
+      action: "win.show-help-overlay";
+    }
+
+    item {
+      label: _("_About Cobweb");
+      action: "app.about";
+    }
+  }
+}

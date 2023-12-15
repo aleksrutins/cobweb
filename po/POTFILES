@@ -1,0 +1,6 @@
+data/com.farthergate.Cobweb.desktop.in
+data/com.farthergate.Cobweb.metainfo.xml.in
+data/com.farthergate.Cobweb.gschema.xml
+src/main.py
+src/window.py
+src/window.ui
